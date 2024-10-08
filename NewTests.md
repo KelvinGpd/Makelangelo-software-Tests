@@ -7,24 +7,41 @@ de la méthode mais ceux-si seront considérés comme faisant partie du même te
 
 Un commentaire(en anglais) présent avant chaque test décrit son intention.
 
-| N   | TEST_DIR                                                              | TEST_NAME(S)                                                | 
-|-----|-----------------------------------------------------------------------|-------------------------------------------------------------|
-| 1   | src/test/java/com/marginallyclever/convenience/QuadGraphTest          | [testInsertInside, testInsertOutside]                       |                   
-| 2   | src/test/java/com/marginallyclever/convenience/QuadGraphTest          | [testSplit]                                                 |                   
-| 3   | src/test/java/com/marginallyclever/convenience/QuadGraphTest          | [testSearchInside, testSearchOutside, testSearchInChildren] |                   
-| 4   | src/test/java/com/marginallyclever/convenience/noise/SimplexNoiseTest | [testNoise1D, testNoise2D, testNoise3D]                     |                  
-| 5   | src/test/java/com/marginallyclever/convenience/noise/SimplexNoiseTest | [testNoiseOutputDistribution]                               |                  
+| N    | TEST_DIR                                                              | TEST_NAME(S)                                                | 
+|------|-----------------------------------------------------------------------|-------------------------------------------------------------|
+| 1    | src/test/java/com/marginallyclever/convenience/QuadGraphTest          | [testInsertInside, testInsertOutside]                       |                   
+| 2    | src/test/java/com/marginallyclever/convenience/QuadGraphTest          | [testSplit]                                                 |                   
+| 3    | src/test/java/com/marginallyclever/convenience/QuadGraphTest          | [testSearchInside, testSearchOutside, testSearchInChildren] |                   
+| 4(5) | src/test/java/com/marginallyclever/convenience/noise/SimplexNoiseTest | [testNoise1D, testNoise2D, testNoise3D]                     |                  
+| 5(4) | src/test/java/com/marginallyclever/convenience/noise/SimplexNoiseTest | [testNoiseOutputDistribution]                               |                  
 
 
 # Choice Justification (grouped by class)
 
 ### 1.QuadGraph
+cette classe fait partie de convenience package, un des package avec le plus grand nombre  
+d'instructions dans le module. Quad graph avait un couvrage de 0 (aucuns test) mais contient  
+des methodes importantes quant au traçage dans une dimension donnée.
 
 ### 2.SimplexNoise
+cette classe fait partie de convenience noise package, un des package avec le plus grand  
+nombre d'instructions dans le module, avec un couvrage minime. Simplex noise est un algorithme  
+pour la generation de "noise" et le code est basé sur des hypothèses mathématiques  
+complexes. En lisant le code, on devient un peu confus quant aux raisons des opérations.  
+Il est alors important de vérifier avec plusieurs tests si les résultats de ces opérations 
+génèrent bel et bien du "noise" adéquat.
+
+**note**: en réalité 4 et 5 testent trois fonctions totales mais ce regroupement fait plus de sens. 4 teste  
+pour les 3 fonctions et 5 s'assure que, pour un grand nombre, le "noise" est valide.
 
 
 # Coverage achieved after new tests
-**CLASS** QuadGraph.java: 0 -> 73%  
-**CLASS** SimplexNoise.java: 0 ->
+**CLASS** QuadGraph.java:  
+Instruction 0 -> 73%  
+Branch 0 -> 72%
+
+**CLASS** SimplexNoise.java:  
+Instruction 0 -> 69%  
+Branch: 0 -> 22%
 
 # Overall coverage improvement
