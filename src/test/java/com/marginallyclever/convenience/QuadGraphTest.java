@@ -1,6 +1,6 @@
 package com.marginallyclever.convenience;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.awt.geom.Rectangle2D;
@@ -17,9 +17,9 @@ public class QuadGraphTest {
     @Test
     //Make sure the graph attributes are correctly assigned
     public void testInitQuadGraph() {
-        Assert.assertEquals(0, quadGraph.sites.size());
-        Assert.assertNull(quadGraph.children);
-        Assert.assertEquals(new Rectangle2D.Double(0, 0, 10, 10), quadGraph.bounds);
+        Assertions.assertEquals(0, quadGraph.sites.size());
+        Assertions.assertNull(quadGraph.children);
+        Assertions.assertEquals(new Rectangle2D.Double(0, 0, 10, 10), quadGraph.bounds);
     }
 
     @Test
@@ -27,8 +27,8 @@ public class QuadGraphTest {
     //it is added
     public void testInsertInside() {
         Point2D point2D = new Point2D(5, 5);
-        Assert.assertTrue(quadGraph.insert(point2D));
-        Assert.assertEquals(1, quadGraph.sites.size());
+        Assertions.assertTrue(quadGraph.insert(point2D));
+        Assertions.assertEquals(1, quadGraph.sites.size());
     }
 
     @Test
@@ -36,8 +36,8 @@ public class QuadGraphTest {
     //verify it isn't added
     public void testInsertOutside() {
         Point2D point2D = new Point2D(11, 11);
-        Assert.assertFalse(quadGraph.insert(point2D));
-        Assert.assertEquals(0, quadGraph.sites.size());
+        Assertions.assertFalse(quadGraph.insert(point2D));
+        Assertions.assertEquals(0, quadGraph.sites.size());
     }
 
     @Test
@@ -48,8 +48,8 @@ public class QuadGraphTest {
             quadGraph.insert(new Point2D(i, i));
         }
         quadGraph.insert(new Point2D(6, 6));
-        Assert.assertNotNull(quadGraph.children);
-        Assert.assertEquals(4, quadGraph.children.length);
+        Assertions.assertNotNull(quadGraph.children);
+        Assertions.assertEquals(4, quadGraph.children.length);
     }
 
     @Test
@@ -63,13 +63,13 @@ public class QuadGraphTest {
         quadGraph.insert(p2);
 
         //closer to p1
-        Assert.assertEquals(p1, quadGraph.search(new Point2D(3, 3)));
+        Assertions.assertEquals(p1, quadGraph.search(new Point2D(3, 3)));
         //closer to p2
-        Assert.assertEquals(p2, quadGraph.search(new Point2D(5, 5)));
+        Assertions.assertEquals(p2, quadGraph.search(new Point2D(5, 5)));
         //exact match
-        Assert.assertEquals(p1, quadGraph.search(new Point2D(2, 2)));
+        Assertions.assertEquals(p1, quadGraph.search(new Point2D(2, 2)));
         //equal distance, returns first
-        Assert.assertEquals(p1, quadGraph.search(new Point2D(4, 4)));
+        Assertions.assertEquals(p1, quadGraph.search(new Point2D(4, 4)));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class QuadGraphTest {
     //ensure that the result is Null
     public void testSearchOutside() {
         Point2D pointOut = new Point2D(11, 11);
-        Assert.assertNull(quadGraph.search(pointOut));
+        Assertions.assertNull(quadGraph.search(pointOut));
     }
 
     @Test
@@ -98,10 +98,10 @@ public class QuadGraphTest {
         Point2D r1 = quadGraph.search(new Point2D(1,1));
         Point2D r2 = quadGraph.search(new Point2D(7, 7));
 
-        Assert.assertEquals(pInChild1.x, r1.x, 0);
-        Assert.assertEquals(pInChild1.y, r1.y, 0);
-        Assert.assertEquals(pInChild2.x, r2.x, 0);
-        Assert.assertEquals(pInChild2.y, r2.y, 0);
+        Assertions.assertEquals(pInChild1.x, r1.x, 0);
+        Assertions.assertEquals(pInChild1.y, r1.y, 0);
+        Assertions.assertEquals(pInChild2.x, r2.x, 0);
+        Assertions.assertEquals(pInChild2.y, r2.y, 0);
     }
 
     @Test
@@ -115,6 +115,6 @@ public class QuadGraphTest {
         }
 
         int sum = quadGraph.countPoints();
-        Assert.assertEquals(sum, 10);
+        Assertions.assertEquals(sum, 10);
     }
 }

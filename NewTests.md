@@ -69,3 +69,11 @@ Instruction 45% -> 100%
 Branch 50% -> 100%  
 
 # Overall coverage improvement
+Couvrage avant l'ajout des tests:  
+Instruction: **25%**
+Branch: **17%**
+
+
+Couvrage après l'ajout des tests: 
+Instruction: **28%**
+Branch: **19%**
