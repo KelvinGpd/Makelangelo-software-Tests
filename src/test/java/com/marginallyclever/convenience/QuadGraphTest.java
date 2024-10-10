@@ -11,7 +11,7 @@ public class QuadGraphTest {
     @BeforeEach
     //Arrange a 10x10 graph to use for tests
     public void beforeEach() {
-        quadGraph = new QuadGraph(0, 0, 10, 10);;
+        quadGraph = new QuadGraph(0, 0, 10, 10);
     }
 
     @Test
@@ -102,5 +102,19 @@ public class QuadGraphTest {
         Assert.assertEquals(pInChild1.y, r1.y, 0);
         Assert.assertEquals(pInChild2.x, r2.x, 0);
         Assert.assertEquals(pInChild2.y, r2.y, 0);
+    }
+
+    @Test
+    //Counts the number of points in the whole graph
+    //Ensure that the method correctly determines the number of points in the graph.
+    public void testCountPoints()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            quadGraph.insert(new Point2D(i, i));
+        }
+
+        int sum = quadGraph.countPoints();
+        Assert.assertEquals(sum, 10);
     }
 }
