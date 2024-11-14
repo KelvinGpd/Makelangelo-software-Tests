@@ -12,10 +12,10 @@ jobs:
       matrix:
         jvm_flag:
           - "-XX:+UseG1GC"
-          - "-XX:MaxHeapSize=512m"
-          - "-XX:+PrintGCDetails"
+          - "-XX:MaxHeapSize=256m"
+          - "-XX:-TieredCompilation"
           - "-XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation"
-          - "-XX:+UseParallelGC"
+          - "-XX:-UseCompressedOops"
 
     steps:
     - uses: actions/checkout@v4
