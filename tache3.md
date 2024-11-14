@@ -31,12 +31,20 @@ strategy:
     MAVEN_OPTS="${{ matrix.jvm_flag }}" ./mvnw clean test -Djava.awt.headless=true
 ```
 
+4. Si la modification d'un flag cause une erreur de build/test: log le flag, avec un message (red flag, haha!)
+```
+- name: Flag Error Message
+    if: failure()
+    run: |
+    echo "${{ matrix.jvm_flag }} error - that's a red flag!"
+```
+
 ## Liste de Flags modifiés
 Description et justification des flags choisis (impact possible sur la qualité, la performance, l'observabilité)
 
-**Build 1 - Flag: "UseG1GC"**  
+**Build 1 - Flag: "UseG1GC"**
 Ce flag permet d'activer le G1 (Garbage-First) collector.  
-Il est approprié lorsque l'on utilise des tas (Heap) de grande taille et permet une performance accrue pour une application a utilisation en temps réel comme MakelAngelo.    
+Il est approprié lorsque l'on utilise des tas (Heap) de grande taille et permet une performance accrue pour une application a utilisation en temps réel comme MakelAngelo.
 Il réduit les lags dûs à la collecte de mémoire.
 
 La valeur booléenne par défaut est true et nous la mettons à false, ce qui pourrait causer des fautes sur la performance et la stabilité (Qualité).

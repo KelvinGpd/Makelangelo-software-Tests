@@ -35,6 +35,11 @@ jobs:
       run: |
         MAVEN_OPTS="${{ matrix.jvm_flag }}" ./mvnw clean test -Djava.awt.headless=true
 
+    - name: Flag Error Message
+      if: failure()
+      run: |
+        echo "${{ matrix.jvm_flag }} error - that's a red flag!"
+
     - name: Get JaCoCo Coverage
       id: coverage  
       run: |
