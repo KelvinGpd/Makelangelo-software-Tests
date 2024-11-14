@@ -33,7 +33,6 @@ jobs:
     - name: Build and Test with Maven
       timeout-minutes: 15
       run: |
-        unset MAVEN_OPTS
         MAVEN_OPTS="${{ matrix.jvm_flag }}" ./mvnw clean test -Djava.awt.headless=true
 
     - name: Get JaCoCo Coverage

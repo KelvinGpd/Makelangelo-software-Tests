@@ -22,7 +22,7 @@ strategy:
     echo "Running tests with JVM flag: ${{ matrix.jvm_flag }}"
 ```
 
-3. Nous avons modifié cette étape pour inclure l'option MAVEN_OPTS, qui, pour chacun des 5 builds, règle l'un des flags à sa valeur spécifiée précédemment par la matrice dans la stratégie. unset MavenOpts pour s'assurer que les itérations précédentes n'ont pas d'effet (bien que ceci devrait se faire automatiquement)
+3. Nous avons modifié cette étape pour inclure l'option MAVEN_OPTS, qui, pour chacun des 5 builds, règle l'un des flags à sa valeur spécifiée précédemment par la matrice dans la stratégie.
 ```
 - name: Build and Test with Maven
     timeout-minutes: 15
