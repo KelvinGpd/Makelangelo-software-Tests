@@ -7,6 +7,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        jvm_flag:
+          - "-XX:+UseG1GC"
+          - "-XX:MaxHeapSize=512m"
+          - "-XX:+PrintGCDetails"
+          - "-XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation"
+          - "-XX:+UseParallelGC"
+
     steps:
     - uses: actions/checkout@v4
 
@@ -16,9 +26,14 @@ jobs:
         java-version: '17'
         cache: 'maven'
 
+    - name: Log JVM Flag
+      run: |
+        echo "Running tests with JVM flag: ${{ matrix.jvm_flag }}"
+
     - name: Build and Test with Maven
       timeout-minutes: 15
-      run: ./mvnw -B verify
+      run: |
+        MAVEN_OPTS="${{ matrix.jvm_flag }}" ./mvnw clean test -Djava.awt.headless=true
 
     - name: Get JaCoCo Coverage
       id: coverage  
